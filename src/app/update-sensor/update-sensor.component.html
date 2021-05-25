@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Update information</title>
+</head>
+<body>
+    <div class="title"><h1 style ="margin-left : 15px;">Connect with your smart house !</h1>
+    </div>
+    <div class="formNew" style = "height : 240px;"> 
+        <div *ngFor="let sensor of sensors"> 
+            <h3>{{sensor.name}}</h3>
+            
+
+                <div class="from-group">
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="category">Category</label>
+                        <select [(ngModel)]="newsensors.Category.name" class="form-select" id="category">
+                            <option *ngFor="let cat of categories" value="{{cat.Name}}">{{cat.Name}}</option>   
+                        </select>
+                    </div>
+                    
+                </div> 
+                
+                <div class="from-group">
+
+
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="room">Room</label>
+                        <select [(ngModel)]="newsensors.Room.name" class="form-select" id="room">
+                            <option *ngFor="let room of rooms" value="{{room.Name}}">{{room.Name}}</option>   
+                        </select>
+                    </div>
+                </div>
+
+                <button (click)="updateSensor()" type="button" id="{{sensor.Name}}" class="btn btn-success Activate" style="margin-right:5px;">Update</button>
+            
+        </div>
+        <div>
+            <form action = "/" style = "float : right;">
+                <button (click)="move('menu')" class="btn btn-warning">Back to menu</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

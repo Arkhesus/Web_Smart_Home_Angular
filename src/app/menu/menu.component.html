@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous"/>
+    <title>Smart house</title>
+</head>
+    <body>
+        <div class="title"><h1 style ="margin-left : 15px;">Connect with your smart house !</h1>
+        </div>  
+        <div class="specs">           
+                    <div class = "colspec">
+                        <div class="form-check">   
+
+
+                                <div class="from-group">
+         
+          
+                                <div class="input-group mb-3">
+                                        <label class="input-group-text" for="category">Category</label>
+                                        <select [(ngModel)]="filter_cat"  class="form-select" id="category">
+                                                <option></option>
+                                                <option *ngFor="let cat of categories" value="{{cat.Name}}">{{cat.Name}}</option>   
+                                        </select>
+                                    </div>
+                                    
+                                </div> 
+                                
+                                <div class="from-group">
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text" for="room">Room</label>
+                                        <select [(ngModel)]="filter_room" class="form-select" id="room">
+                                            <option></option>
+                                            <option *ngFor="let room of rooms" value="{{room.Name}}">{{room.Name}}</option>   
+                                        </select>
+                                    </div>
+                                    
+                                </div> 
+                                     
+                                <button (click)="filter()" type="submit" class="btn btn-primary" style="margin-top : 10px; margin-bottom : 10px;">Filter</button><br>
+                            
+
+                        </div>
+                    </div>
+            <div>
+                <div class="newBtn">
+                        <button (click)="move('updateRoom')" type="submit" class="btn btn-secondary" style="margin-left: 10px; width:90px;">Update Room</button>
+
+                        <button (click)="move('updateCategory')"  class="btn btn-secondary" style="margin-left:10px;">Update Category</button>
+            
+                </div>
+            </div>
+            
+                <button (click)="move('newSensor')" class="btn btn-secondary" style = "margin-left: 10px; width : 250px;margin-top:10px;">Create a new sensor</button>
+
+            
+
+        </div>
+
+    
+
+
+        <div class = "cards">
+            <div class="div1" *ngFor="let sensor of sensors"> 
+                <h3>{{sensor.Name}}</h3>
+                <h5>Category : {{sensor.Category.name}}</h5>
+                <h5>Room : {{sensor.Room.name}}</h5>
+    
+                <div class="button">
+                    <button  type="button" id="{{sensor.Name}}" class="btn btn-success Activate" style="margin-right:5px;">Activate {{sensor.Name}}</button>
+                    <form action="/updateSensor/{{sensor.Name}}" >
+                        <button (click)="moveSensor('updateSensor', sensor.Name)" class="btn btn-warning">Update</button>
+                    </form>
+                </div>
+                <div>
+                    <form class = "danger">
+                        <button (click)="deleteSensor(sensor)" class="btn btn-danger" style="margin-top:10px;width : 98%;">Delete</button>
+                    </form>
+                </div>
+                
+            </div>
+    </div>
+    
+    
+    </body>
+</html>

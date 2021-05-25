@@ -1,0 +1,21 @@
+<div class = "cards">
+        <div class="div1" *ngFor="let sensor of sensors"> 
+            <h3>{{sensor.Name}}</h3>
+            <h5>Category : {{sensor.Category.name}}</h5>
+            <h5>Room : {{sensor.Room.name}}</h5>
+
+            <div class="button">
+                <button  type="button" id="{{sensor.name}}" class="btn btn-success Activate" style="margin-right:5px;">Activate {{sensor.name}}</button>
+                <form action="/updateSensor/{{sensor.name}}" >
+                    <button (click)="move('updateSensor', sensor.name)" class="btn btn-warning">Update</button>
+                </form>
+            </div>
+            <div>
+                <form class = "danger">
+                    <button (click)="deleteSensor(sensor)" class="btn btn-danger" style="margin-top:10px;width : 98%;">Delete</button>
+                </form>
+            </div>
+            
+        </div>
+</div>
+
